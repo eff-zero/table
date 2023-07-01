@@ -2,13 +2,15 @@ import { Container, Card, Button } from 'react-bootstrap';
 import { Form } from 'react-bootstrap';
 import Input from '../Input';
 import useForm from './useForm';
+import { useFormState } from '@/redux';
 
 function FormComponent() {
+  const { isVisible } = useFormState();
   const { handleChange, handleSubmit, form } = useForm();
   const { base, capitalPayment, interestRate } = form;
 
   return (
-    <Container>
+    <Container className={!isVisible && 'd-none'}>
       <Card className='shadow'>
         <Card.Body>
           <Form onSubmit={handleSubmit}>

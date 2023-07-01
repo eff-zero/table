@@ -1,3 +1,4 @@
+import { setDataToTable } from '@/redux/features/formSlice';
 import { showLouder, hideLouder } from '@/redux/features/louderSlice';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -10,8 +11,14 @@ const initialState = {
 
 function useForm() {
   const [form, setForm] = useState(initialState);
-  const resetForm = () => setForm(initialState);
   const dispatch = useDispatch();
+
+  const resetForm = () => setForm(initialState);
+
+  const setLoader = () => {
+    dispatch(showLouder());
+    setTimeout(() => dispatch(hideLouder()), 800);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,11 +26,13 @@ function useForm() {
     setForm(values);
   };
 
+  const loadTable = () => dispatch(setDataToTable(form));
+
   const handleSubmit = (e) => {
     e.preventDefault();
     resetForm();
-    dispatch(showLouder());
-    setTimeout(() => dispatch(hideLouder()), 800);
+    loadTable();
+    setLoader();
   };
 
   return { handleChange, handleSubmit, form };
