@@ -1,4 +1,6 @@
+import { showLouder, hideLouder } from '@/redux/features/louderSlice';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 const initialState = {
   base: '',
@@ -8,8 +10,8 @@ const initialState = {
 
 function useForm() {
   const [form, setForm] = useState(initialState);
-
   const resetForm = () => setForm(initialState);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,8 +21,9 @@ function useForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
     resetForm();
+    dispatch(showLouder());
+    setTimeout(() => dispatch(hideLouder()), 800);
   };
 
   return { handleChange, handleSubmit, form };
