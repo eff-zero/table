@@ -8,6 +8,7 @@ const __dirname = path.dirname(__filename);
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/table/',
   plugins: [react()],
   resolve: {
     alias: {
