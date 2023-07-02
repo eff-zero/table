@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = { data: {}, isVisible: {} };
+const initialState = { data: {}, isVisible: true };
 
 export const formReducer = createSlice({
   name: 'form',
