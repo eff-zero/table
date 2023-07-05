@@ -6,8 +6,9 @@ import { useFormState } from '@/redux';
 
 function FormComponent() {
   const { isVisible } = useFormState();
-  const { handleChange, handleSubmit, form } = useForm();
+  const { handleChange, handleSubmit, form, errors } = useForm();
   const { base, capitalPayment, interestRate } = form;
+  const { isInvalid } = errors;
 
   return (
     <Container className={!isVisible && 'd-none'}>
@@ -20,6 +21,7 @@ function FormComponent() {
               className='mb-3'
               name='base'
               value={base}
+              error={errors.base}
               handleChange={handleChange}
             />
             <Input
@@ -28,6 +30,7 @@ function FormComponent() {
               className='mb-3'
               name='interestRate'
               value={interestRate}
+              error={errors.interestRate}
               handleChange={handleChange}
             />
             <Input
@@ -36,12 +39,14 @@ function FormComponent() {
               className='mb-3'
               name='capitalPayment'
               value={capitalPayment}
+              error={errors.capitalPayment}
               handleChange={handleChange}
             />
             <Button
               type='submit'
               variant='secondary'
               className='d-block mx-auto'
+              disabled={isInvalid}
             >
               Enviar
             </Button>
