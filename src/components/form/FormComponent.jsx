@@ -1,8 +1,8 @@
 import { Container, Card, Button } from 'react-bootstrap';
 import { Form } from 'react-bootstrap';
+import { useFormState } from '@/redux';
 import Input from '../Input';
 import useForm from './useForm';
-import { useFormState } from '@/redux';
 
 function FormComponent() {
   const { isVisible } = useFormState();
