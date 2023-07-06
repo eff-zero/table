@@ -22,7 +22,7 @@ function useForm() {
 
   const setLoader = () => {
     dispatch(showLouder());
-    setTimeout(() => dispatch(hideLouder()), 800);
+    setTimeout(() => dispatch(hideLouder()), 1200);
   };
 
   const handleChange = (e) => {
